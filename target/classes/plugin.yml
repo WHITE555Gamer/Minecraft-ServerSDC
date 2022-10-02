@@ -1,0 +1,25 @@
+name: ServerSDC
+version: '0.0.1-RELEASE'
+main: com.github.white555gamer.serversdc.ServerSDC
+api-version: 1.19
+authors: [ WHERE_WHITE_, WHERE_WHITE_KUN, WHITE555Gamer ]
+description: Server Settings Data Control Plugin.
+
+commands:
+  serversdc:
+    usage: |
+      /serversdc getmotd
+      /serversdc setdefaultgamemode < Any GameMode >
+      /serversdc setidletimeout < Integer >
+      /serversdc setwhitelistenforced < true | false >
+      /serversdc reloadall
+      /serversdc resourcepackdata
+      /serversdc serverdata
+      /serversdc servernetwork
+      /serversdc serverupdatefolder
+      /serversdc serverversion
+      /serversdc serverworlddata
+    description:
+      For a Server Setting view or edit Data Control.
+    permission: op
+    permission-message: "ERROR: No Operator Permissions."
