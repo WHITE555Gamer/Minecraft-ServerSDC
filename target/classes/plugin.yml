@@ -1,5 +1,5 @@
 name: ServerSDC
-version: '0.0.1-RELEASE'
+version: '0.0.2-RELEASE'
 main: com.github.white555gamer.serversdc.ServerSDC
 api-version: 1.19
 authors: [ WHERE_WHITE_, WHERE_WHITE_KUN, WHITE555Gamer ]

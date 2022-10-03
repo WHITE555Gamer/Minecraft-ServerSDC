@@ -1,6 +1,7 @@
 package com.github.white555gamer.serversdc.assets.commands;
 
 import org.bukkit.GameMode;
+import org.bukkit.Server;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -30,9 +31,6 @@ public class ServerSDCC implements CommandExecutor, TabCompleter {
         } else if (args.length == 1) {
 
             switch (args[0]) {
-                case "getmotd":
-                    sender.sendMessage("Motd: " + getServer().getMotd());
-                    break;
 
                 case "reloadall":
                     sender.sendMessage("Reload Task will Start.");
@@ -59,8 +57,8 @@ public class ServerSDCC implements CommandExecutor, TabCompleter {
                             "  Server is White List Enforced: " + getServer().isWhitelistEnforced() + "\n" +
                             "  Server Players (Online/Max/WhiteListed): " + getServer().getOnlinePlayers().size() + " / " +
                                     getServer().getMaxPlayers() + " / " + getServer().getWhitelistedPlayers().size() + "\n" +
-                            "  Server Shut Down Message: " + getServer().getShutdownMessage()
-                            );
+                            "  Server Shut Down Message: " + getServer().getShutdownMessage() + "\n" +
+                            "  Server Motd: " + getServer().getMotd());
                     break;
 
                 case "servernetwork":
@@ -85,10 +83,13 @@ public class ServerSDCC implements CommandExecutor, TabCompleter {
                     break;
 
                 case "serverworlddata":
-                    String WorldsList = "";
+                    String WorldsList = " ";
                     for (int i = 0; i < getServer().getWorlds().size(); i++) {
-                        if (i == 0) {WorldsList = getServer().getWorlds().get(i).getName();}
-                        WorldsList = WorldsList + "," + getServer().getWorlds().get(i).getName();
+                        if (i == 0) {
+                            WorldsList = getServer().getWorlds().get(i).getName();
+                        } else {
+                            WorldsList = WorldsList + "," + getServer().getWorlds().get(i).getName();
+                        }
                     }
                     sender.sendMessage("Server World Data:\n" +
                             "  Server Allows Flight: " + getServer().getAllowFlight() + "\n" +
@@ -161,13 +162,11 @@ public class ServerSDCC implements CommandExecutor, TabCompleter {
 
             if (args.length == 1) {
                 if (args[0].length() == 0) {
-                    return Arrays.asList("getmotd","setdefaultgamemode","setidletimeout","setwhitelistenforced","reloadall",
+                    return Arrays.asList("setdefaultgamemode","setidletimeout","setwhitelistenforced","reloadall",
                             "resourcepackdata","serverdata","servernetwork","serverupdatefolder","serverversion","serverworlddata");
                 } else {
 
-                    if ("getmotd".startsWith(args[0])) {
-                        return Collections.singletonList("getmotd");
-                    } else if ("se".startsWith(args[0])) {
+                    if ("se".startsWith(args[0])) {
                         return Arrays.asList("setdefaultgamemode","setidletimeout","setwhitelistenforced",
                                 "serverdata","servernetwork","serverupdatefolder","serverversion","serverworlddata");
                     } else if ("set".startsWith(args[0])) {
